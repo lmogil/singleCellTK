@@ -23,6 +23,8 @@ addons:
 
 r_build_args: "--no-build-vignettes"
 r_check_args: "--no-vignettes --no-build-vignettes --as-cran"
+bioc_packages:
+  - scds
 r_github_packages:
   - jimhester/lintr
 
