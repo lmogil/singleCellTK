@@ -11,6 +11,8 @@ before_install:
   - pyenv install 3.6.1
   - pyenv global 3.6.1
   - Rscript -e 'update.packages(ask = FALSE)'
+  - Rscript -e 'install.packages("devtools")'
+  - Rscript -e 'devtools::install_version("xgboost", version = "0.90.0.2", repos = "http://cran.us.r-project.org")'
   - pip install --upgrade pip
   - pip install scipy scrublet scanpy scanorama scgen bbknn
 
@@ -23,8 +25,6 @@ r_build_args: "--no-build-vignettes"
 r_check_args: "--no-vignettes --no-build-vignettes --as-cran"
 r_github_packages:
   - jimhester/lintr
-r_binary_packages:
-  - xgboost
 
 notifications:
   slack:
