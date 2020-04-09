@@ -13,12 +13,11 @@ bioc_required: true
 # However 'remotes::dev_package_deps' will try to auto upgrade packages
 # Set this environment will disable auto upgrading
 env:
-  - R_REMOTES_UPGRADE="never"
+  - R_REMOTES_UPGRADE=never
 
 before_install:
   - pyenv install 3.6.1
   - pyenv global 3.6.1
-  - Rscript -e 'update.packages(ask = FALSE)'
   - Rscript -e 'install.packages("devtools")'
   - Rscript -e 'devtools::install_version("xgboost", version = "0.90.0.2", repos = "http://cran.us.r-project.org")'
   - pip install --upgrade pip
