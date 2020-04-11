@@ -11,9 +11,6 @@ bioc_required: true
 # Need to force install older version using 'devtools::install_version'
 #    which is done in 'before_install' (see below) 
 # However 'remotes::dev_package_deps' will try to auto upgrade packages
-# Set this environment will disable auto upgrading
-env:
-  - R_REMOTES_UPGRADE=never
 
 before_install:
   - pyenv install 3.6.1
@@ -22,6 +19,13 @@ before_install:
   - Rscript -e 'devtools::install_version("xgboost", version = "0.90.0.2", repos = "http://cran.us.r-project.org")'
   - pip install --upgrade pip
   - pip install scipy scrublet scanpy scanorama scgen bbknn
+
+install:
+- R -e 'devtools::install_deps(dep = TRUE, upgrade="never")'
+
+script:
+- R CMD build .
+- R CMD check *tar.gz
 
 addons:
   apt:
